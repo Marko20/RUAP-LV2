@@ -5,14 +5,23 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ContactManager.Services;
 
 namespace ContactManager.Controllers
 {
     public class ContactController : ApiController
     {
-        public Contact[] Get()
+        public class ContactController : ApiController
         {
-            return new Contact[]
+            private ContactRepository contactRepository;
+
+            public ContactController()
+            {
+                this.contactRepository = new ContactRepository();
+            }
+            public Contact[] Get()
+            {
+                return contactRepository.GetAllContacts();
     {
         new Contact
         {
@@ -25,6 +34,7 @@ namespace ContactManager.Controllers
             Name = "Dan Roth"
         }
     };
+            }
         }
     }
 }
